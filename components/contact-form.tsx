@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { PROJECT_TYPES } from "@/lib/site";
 
 type Status = "idle" | "submitting" | "success" | "error";
@@ -8,6 +8,14 @@ type Status = "idle" | "submitting" | "success" | "error";
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
+  const typeRef = useRef<HTMLSelectElement>(null);
+
+  // Preselect "AI workflow" when linked with ?type=ai (read client-side, no Suspense needed).
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("type") === "ai" && typeRef.current) {
+      typeRef.current.value = "AI workflow";
+    }
+  }, []);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -89,7 +97,7 @@ export function ContactForm() {
 
       <label className="mt-4 block">
         <span className="field-label">Project type</span>
-        <select className="field-input" name="projectType" defaultValue="New website">
+        <select ref={typeRef} className="field-input" name="projectType" defaultValue="New website">
           {PROJECT_TYPES.map((type) => (
             <option key={type} value={type}>
               {type}
