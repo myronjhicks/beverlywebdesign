@@ -20,18 +20,16 @@ export default function Home() {
             <p className="lead hero-in mt-6 max-w-[34rem] desk:text-[19px]" style={delay(120)}>
               Custom sites for local businesses, live in 3–4 weeks.
             </p>
-            <div className="hero-in mt-8" style={delay(240)}>
+            <div className="hero-in mt-8 flex flex-wrap items-center gap-3" style={delay(240)}>
               <a href="#contact" className="btn btn-primary">
                 Start a project
+              </a>
+              <a href="/ai-workflows" className="btn btn-secondary">
+                See how we take busywork off your plate
               </a>
             </div>
             <p className="hero-in mt-6 max-w-[30rem] text-[15px] text-mute" style={delay(320)}>
               13+ years building production software. Senior fintech engineer.
-            </p>
-            <p className="hero-in mt-3 max-w-[30rem] text-[14px] text-mute" style={delay(400)}>
-              <a href="#ai-workflows" className="hover:underline">
-                Already have a site? We also automate the busywork behind it &rarr;
-              </a>
             </p>
           </div>
           <div className="hero-in" style={delay(180)}>
@@ -83,6 +81,33 @@ export default function Home() {
         </Reveal>
       </section>
 
+      {/* 3b. AI workflows: second offer, dark band (right after services) */}
+      <section id="ai-workflows" className="anchor-offset bg-ink text-paper" aria-labelledby="ai-workflows-heading">
+        <div className="page-wrap band-pad">
+          <Reveal variant="scale" className="grid gap-12 desk:grid-cols-[1fr_1.05fr] desk:gap-16">
+            <div>
+              <h2 id="ai-workflows-heading" className="display-h2 max-w-[17ch]">
+                You didn&rsquo;t open a shop to do paperwork at 9pm.
+              </h2>
+              <p className="mt-6 max-w-[34rem] text-[17px] text-paper/85 desk:text-[18px]">
+                We set up simple automations that answer, follow up, and keep track, so you&rsquo;re
+                not doing it at 9pm. Built by an engineer who builds systems that have to work every
+                time.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2">
+                <a href={SITE.aiContactHref} className="btn btn-light">
+                  Start a project
+                </a>
+                <a href="/ai-workflows" className="tap text-[15px] font-semibold text-paper underline-offset-4 hover:underline">
+                  How it works &rarr;
+                </a>
+              </div>
+            </div>
+            <BeforeAfter dark />
+          </Reveal>
+        </div>
+      </section>
+
       {/* 5. How it works + timeline */}
       <section className="bg-sand" aria-labelledby="process-heading">
         <div className="page-wrap band-pad">
@@ -124,34 +149,7 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* 7. AI workflows: second offer, dark band */}
-      <section id="ai-workflows" className="anchor-offset bg-ink text-paper" aria-labelledby="ai-workflows-heading">
-        <div className="page-wrap band-pad">
-          <Reveal variant="scale" className="grid gap-12 desk:grid-cols-[1fr_1.05fr] desk:gap-16">
-            <div>
-              <h2 id="ai-workflows-heading" className="display-h2 max-w-[17ch]">
-                Your site brings in the work. Let&rsquo;s take the busywork off your plate.
-              </h2>
-              <p className="mt-6 max-w-[34rem] text-[17px] text-paper/85 desk:text-[18px]">
-                We set up simple automations that answer, follow up, and keep track, so you&rsquo;re
-                not doing it at 9pm. Built by an engineer who builds systems that have to work every
-                time.
-              </p>
-              <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2">
-                <a href="/?type=ai#contact" className="btn btn-light">
-                  Start a project
-                </a>
-                <a href="/ai-workflows" className="tap text-[15px] font-semibold text-paper underline-offset-4 hover:underline">
-                  How it works &rarr;
-                </a>
-              </div>
-            </div>
-            <BeforeAfter dark />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 8. Pricing: website primary, workflow audit secondary */}
+      {/* 8. Pricing: website primary, busywork audit secondary */}
       <section id="pricing" className="anchor-offset page-wrap py-20 desk:py-28" aria-labelledby="pricing-heading">
         <Reveal variant="left" className="grid gap-6 desk:grid-cols-[3fr_2fr] desk:items-start">
           <div className="rounded-[20px] border border-line bg-elevated p-6 sm:p-10 desk:grid desk:grid-cols-2 desk:gap-10">
@@ -191,7 +189,7 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-            <a href="/?type=ai#contact" className="btn btn-secondary mt-6">
+            <a href={SITE.aiContactHref} className="btn btn-secondary mt-6">
               Start a project
             </a>
           </div>

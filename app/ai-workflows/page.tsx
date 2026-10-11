@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { BeforeAfter } from "@/components/before-after";
 import { Reveal } from "@/components/reveal";
-import { AI_EXAMPLES, AI_FAQ, AI_STEPS } from "@/lib/site";
+import { ContactForm } from "@/components/contact-form";
+import { AI_EXAMPLES, AI_FAQ, AI_STEPS, SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "AI workflows for Chicago businesses",
@@ -21,7 +22,7 @@ export default function AiWorkflowsPage() {
           Simple automations for the follow-up you never have time for.
         </p>
         <div className="hero-in mt-8" style={{ "--d": "240ms" } as React.CSSProperties}>
-          <a href="/?type=ai#contact" className="btn btn-primary">
+          <a href="#contact" className="btn btn-primary">
             Start a project
           </a>
         </div>
@@ -60,7 +61,7 @@ export default function AiWorkflowsPage() {
       <section className="page-wrap section-pad" aria-labelledby="aiw-more-heading">
         <Reveal variant="left" className="desk:grid desk:grid-cols-[1fr_1.4fr] desk:gap-16">
           <h2 id="aiw-more-heading" className="display-h2 max-w-[12ch]">
-            More things we can set up.
+            Jobs it can take off your plate.
           </h2>
           <ul className="mt-8 desk:mt-0">
             {AI_EXAMPLES.map((item) => (
@@ -96,10 +97,38 @@ export default function AiWorkflowsPage() {
           <h2 id="aiw-cta-heading" className="display-h2 max-w-[20ch]">
             Tell us where the busywork is.
           </h2>
-          <a href="/?type=ai#contact" className="btn btn-light mt-8">
+          <a href="#contact" className="btn btn-light mt-8">
             Start a project
           </a>
         </div>
+      </section>
+
+      {/* TODO NEEDS MYRON'S APPROVAL: first workflow case study slot (see AI_CASE_STUDY in lib/site.ts). Render nothing until approved. */}
+
+      <section id="contact" className="anchor-offset page-wrap section-pad" aria-labelledby="aiw-contact-heading">
+        <Reveal variant="up" className="grid items-start gap-12 desk:grid-cols-2 desk:gap-16">
+          <div>
+            <h2 id="aiw-contact-heading" className="display-h2 max-w-[16ch]">
+              Start with a busywork audit.
+            </h2>
+            <p className="lead mt-6 max-w-[28rem]">
+              $1,500 flat. Tell us what eats your week and we&rsquo;ll say straight whether an
+              automation can help.
+            </p>
+            <div className="mt-8 space-y-2">
+              <a
+                href={`tel:${SITE.phoneTel}`}
+                className="block text-[28px] font-semibold tracking-[-0.02em] text-ink"
+              >
+                {SITE.phoneDisplay}
+              </a>
+              <a href={`mailto:${SITE.email}`} className="block text-[16px] text-ink">
+                {SITE.email}
+              </a>
+            </div>
+          </div>
+          <ContactForm defaultProjectType="AI workflow" />
+        </Reveal>
       </section>
     </>
   );

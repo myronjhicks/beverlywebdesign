@@ -165,7 +165,7 @@ export function HeroMap() {
   const accent = "var(--color-accent)";
 
   return (
-    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[20px] border border-line bg-elevated shadow-[0_24px_50px_-28px_rgb(23_33_28/0.5)]">
+    <div role="img" aria-label="Map of Chicago streets with customers heading to your shop" className="relative aspect-[16/10] w-full overflow-hidden rounded-[20px] border border-line bg-elevated shadow-[0_24px_50px_-28px_rgb(23_33_28/0.5)]">
       <svg
         ref={rootRef}
         viewBox="0 0 480 300"

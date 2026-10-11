@@ -5,12 +5,16 @@ import { PROJECT_TYPES } from "@/lib/site";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-export function ContactForm() {
+export function ContactForm({
+  defaultProjectType = "New website",
+}: {
+  defaultProjectType?: (typeof PROJECT_TYPES)[number];
+}) {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
   const typeRef = useRef<HTMLSelectElement>(null);
 
-  // Preselect "AI workflow" when linked with ?type=ai (read client-side, no Suspense needed).
+  // Back-compat: ?type=ai still preselects "AI workflow" (read client-side, no Suspense needed).
   useEffect(() => {
     if (new URLSearchParams(window.location.search).get("type") === "ai" && typeRef.current) {
       typeRef.current.value = "AI workflow";
@@ -97,7 +101,7 @@ export function ContactForm() {
 
       <label className="mt-4 block">
         <span className="field-label">Project type</span>
-        <select ref={typeRef} className="field-input" name="projectType" defaultValue="New website">
+        <select ref={typeRef} className="field-input" name="projectType" defaultValue={defaultProjectType}>
           {PROJECT_TYPES.map((type) => (
             <option key={type} value={type}>
               {type}

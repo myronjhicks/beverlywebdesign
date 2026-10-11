@@ -11,6 +11,7 @@ export const SITE = {
   country: "US",
   tagline: "Websites for Chicago businesses.",
   ogTitle: "Websites for Chicago businesses | Beverly Web Design",
+  aiContactHref: "/ai-workflows#contact",
   ogDescription:
     "Custom websites for Chicago local businesses, live in 3\u20134 weeks. Built by a senior engineer with 13+ years of production software experience.",
 } as const;
@@ -187,11 +188,11 @@ export const BEFORE_AFTER = [
 
 /** Price ($1,500 flat) approved. */
 export const WORKFLOW_AUDIT = {
-  name: "Workflow audit",
+  name: "Busywork audit",
   price: "$1,500",
   note: "Flat fee for the audit and a written plan. The build is quoted from the plan.",
   includes: [
-    "A look at how work comes in today",
+    "A look at where your week actually goes",
     "The 1–2 tasks costing you the most time",
     "A written plan with a fixed build quote",
   ],
@@ -218,6 +219,17 @@ export const AI_STEPS = [
   },
 ] as const;
 
+/**
+ * TODO NEEDS MYRON'S APPROVAL: first workflow case study. None exists yet, so nothing
+ * is rendered. When approved, fill this in and render it on /ai-workflows and the
+ * homepage AI band. Do not invent one.
+ */
+export const AI_CASE_STUDY: {
+  client: string;
+  problem: string;
+  result: string;
+} | null = null;
+
 export const AI_EXAMPLES = [
   "Review requests after a job",
   "Quote and estimate drafts from a form",
@@ -241,5 +253,9 @@ export const AI_FAQ = [
   {
     q: "Do I need a new website first?",
     a: "No. Workflows work with the site you have, or with no site at all.",
+  },
+  {
+    q: "How much does it cost?",
+    a: "The busywork audit is $1,500 flat. We look at where your week goes, hand you a written plan with a fixed build quote, and you decide from there. No surprises.",
   },
 ] as const;
