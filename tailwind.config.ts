@@ -13,12 +13,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: "#F7F7F5",
+        paper: "#F3EEE4",
         elevated: "#FFFFFF",
-        ink: "#111111",
-        signal: "#1A3AFF",
-        line: "#D6D6D2",
-        mute: "#4A4A46",
+        ink: "#17211C",
+        signal: "#A63D1D",
+        line: "#D5CDBD",
+        mute: "#4B524C",
       },
     },
   },

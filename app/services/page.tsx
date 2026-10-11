@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Custom websites, redesigns, stores, and autonomous workflows for Chicago businesses.",
+    "Custom websites, redesigns, online stores, and AI workflow consulting for Chicago businesses.",
 };
 
 export default function ServicesPage() {
@@ -16,16 +16,17 @@ export default function ServicesPage() {
             Fast, clear sites set up so Chicago customers can actually reach you.
           </p>
           <a href="/#contact" className="tap mt-6 text-ink">
-            Start a website
+            Start a project
           </a>
         </article>
         <article className="rounded-[12px] bg-ink p-8 text-paper">
-          <h2 className="display-h2">Systems that do the repeat work.</h2>
-          <p className="mt-4 text-[16px] text-paper/80">
-            Deployed, not decked. Not a chatbot bolted onto a footer.
+          <h2 className="display-h2">Automation, after launch.</h2>
+          <p className="mt-4 text-[16px] text-paper/85">
+            Once the site is working, we can set up simple workflows for follow-up, intake, and
+            scheduling, so fewer customers slip through.
           </p>
-          <a href="/#contact" className="tap mt-6 text-paper">
-            Talk about a workflow
+          <a href="/ai-workflows" className="tap mt-4 font-semibold text-paper underline-offset-4 hover:underline">
+            How AI workflows work &rarr;
           </a>
         </article>
       </div>

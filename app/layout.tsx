@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Newsreader, Plus_Jakarta_Sans } from "next/font/google";
+import { Bricolage_Grotesque, Figtree } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
@@ -7,18 +7,15 @@ import { SiteHeader } from "@/components/site-header";
 import { SITE } from "@/lib/site";
 import "./globals.css";
 
-const newsreader = Newsreader({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["500"],
-  style: ["normal", "italic"],
-  variable: "--font-newsreader",
+  variable: "--font-bricolage",
   display: "swap",
 });
 
-const plusJakarta = Plus_Jakarta_Sans({
+const figtree = Figtree({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-plus-jakarta",
+  variable: "--font-figtree",
   display: "swap",
 });
 
@@ -64,7 +61,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${newsreader.variable} ${plusJakarta.variable}`}>
+    <html lang="en" className={`${bricolage.variable} ${figtree.variable}`}>
       <body className="min-h-screen bg-paper font-ui text-ink antialiased">
         <a href="#main" className="skip-link">
           Skip to content
