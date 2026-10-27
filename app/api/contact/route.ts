@@ -252,16 +252,16 @@ export async function POST(request: Request) {
   const to = process.env.CONTACT_TO_EMAIL ?? SITE.email;
   const from = process.env.CONTACT_FROM_EMAIL ?? "Beverly Web Design <onboarding@resend.dev>";
 
+  let delivered = false;
+  let githubFailed = false;
+
   if (githubToken) {
     try {
       await createLeadIssue(githubToken, lead);
+      delivered = true;
     } catch (error) {
-      console.error("GitHub lead issue error", error);
-      return errorResponse(
-        request,
-        "The message could not be delivered. Call or email us instead.",
-        502,
-      );
+      githubFailed = true;
+      console.error("GitHub lead issue error; lead follows so it is not lost\n", text, "\n", error);
     }
   } else {
     console.log("Contact inquiry (no GITHUB_LEADS_TOKEN or GITHUB_TOKEN configured)\n", text);
@@ -270,6 +270,7 @@ export async function POST(request: Request) {
   if (webhookUrl) {
     try {
       await postLeadWebhook(webhookUrl, webhookAuthorization, lead);
+      delivered = true;
     } catch (error) {
       console.warn("Contact webhook error (best-effort)", error);
     }
@@ -290,9 +291,12 @@ export async function POST(request: Request) {
           subject: `New inquiry from ${payload.name}`,
           text,
         }),
+        signal: AbortSignal.timeout(8_000),
       });
 
-      if (!resend.ok) {
+      if (resend.ok) {
+        delivered = true;
+      } else {
         console.warn("Resend error (optional)", await resend.text());
       }
     } catch (error) {
@@ -300,8 +304,17 @@ export async function POST(request: Request) {
     }
   }
 
+  // GitHub is the primary channel; only fail the request if it broke and no fallback caught the lead.
+  if (githubFailed && !delivered) {
+    return errorResponse(
+      request,
+      "The message could not be delivered. Call or email us instead.",
+      502,
+    );
+  }
+
   if (wantsJson(request)) {
-    return NextResponse.json({ ok: true, delivered: Boolean(githubToken || webhookUrl || apiKey) });
+    return NextResponse.json({ ok: true, delivered });
   }
 
   return NextResponse.redirect(new URL("/#contact?sent=1", request.url), 303);
