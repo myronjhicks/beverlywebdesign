@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { PROJECT_TYPES, SITE } from "@/lib/site";
 
-const GITHUB_REPO = "beverlywebdesign/beverlywebdesign";
+const GITHUB_REPO = "myronjhicks/beverlywebdesign";
 const LEAD_LABEL = "bwd-lead";
 const GITHUB_ISSUES_URL = `https://api.github.com/repos/${GITHUB_REPO}/issues`;
 const GITHUB_LABELS_URL = `https://api.github.com/repos/${GITHUB_REPO}/labels`;
